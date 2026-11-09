@@ -27,6 +27,11 @@ jobs:
     env:
       BENCHMARK_TRACKING_CONFIG: .github/benchmark-tracking.toml
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
       - name: Configure swap
